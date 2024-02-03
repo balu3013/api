@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul></ul>
+
+    <script>
+        let ul = document.querySelector('ul')
+        function apiCall(url){
+            fetch(url,{
+                method : 'GET',
+                headers : {
+                    "Content-Type" : "application/json; charset=utf-8"
+                }
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .then((res) => {
+                res.forEach((item) => {
+                    let li = document.createElement('li')
+                    li.textContent = item.customer_id ? item.customer_id : item.username;
+                    ul.appendChild(li)
+                })  
+            })
+        }
+        apiCall('http://localhost:3000/orders')
+        apiCall('http://localhost:3000/profiles')
+    
+    </script>
+</body>
+</html>
