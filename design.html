@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+            font-family: sans-serif;
+        }
+        body{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(17, 22, 28);
+        }
+        .container{
+            width: 400px;
+            height: 400px;
+            /* background-color: black; */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border-radius: 50px; */
+        }
+        .container p{
+            font-size: 2rem;
+            transition:all .5s;
+            position: absolute;
+            opacity: 0;
+            /* filter: brightness(400%); */
+        }
+        p:nth-child(1){
+            top: 10%;
+            left: 30%;
+        }
+        p:nth-child(2){
+            bottom: 5%;
+            left: 30%;
+        }
+        p:nth-child(3){
+            right: 10%;
+            top: 42%;
+        }
+        p:nth-child(4){
+            left: 50%;
+            top: 70%;
+        }
+        p:nth-child(5){
+            top: 25%;
+            right: 10%;
+        }
+        p:nth-child(6){
+            left: 8%;
+            top: 55%;
+        }
+        p:nth-child(7){
+            left: 20%;
+            top: 30%;
+        }
+        p.add{
+            transform: scale(1.4);
+            opacity: 1;
+            text-shadow: 0 0 10px 10px white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+    <script>
+        function randomColor(num){
+            return Math.floor(Math.random() * num);
+        }
+        let container = document.querySelector('.container')
+        let count = 0;
+        let arrayOfStrings = ["React","Node","Express","Javascript","Mongodb","HTML CSS","Java"]
+        arrayOfStrings.forEach((item) => {
+            let p = document.createElement('p')
+            p.innerHTML = item;
+            container.appendChild(p)
+        })
+        let para = document.querySelectorAll('p')
+        let id = setInterval(() => {
+            if(count < container.childElementCount){
+                container.children[count].classList.add('add')
+                // container.children[count].style.color = `rgb(${randomColor(255)},${randomColor(255)},${randomColor(255)})`
+                count += 1;
+            }else{
+                para.forEach((item) => {
+                    item.classList.remove('add')
+                    // item.style.color = 'white'
+                })
+                count =0;
+            }
+        },800)
+    </script>
+</body>
+</html>
